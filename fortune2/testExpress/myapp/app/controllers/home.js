@@ -68,4 +68,20 @@ exports.login = function(req, res) {
 }
 
 
+
+exports.add = function(req, res) {
+
+	res.render('add.ejs', {
+		error : req.flash("error"),
+		success: req.flash("success"),
+		session:req.session,
+	
+	 });
+	 next();
+}
+
+
+
+
+
     

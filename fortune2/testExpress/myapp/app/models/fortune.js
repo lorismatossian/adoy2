@@ -1,0 +1,32 @@
+
+//app/models/user.js
+//load the things we need
+var mongoose = require('mongoose');
+var bcrypt   = require('bcrypt-nodejs');
+
+//define the schema for our user model
+var fortuneSchema = mongoose.Schema({
+	_id:{ type: Number, default: 1 },
+	title: String,
+	content: String,
+	user_id: Number,
+	score: Number,
+	created_date: Date,
+	updated_date: Date
+});
+
+
+//methods ======================
+//generating a hash
+userSchema.methods.generateHash = function(password) {
+ return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+//checking if password is valid
+userSchema.methods.validPassword = function(password) {
+ return bcrypt.compareSync(password, this.password);
+};
+
+//create the model for users and expose it to our app
+let User = mongoose.model('ex_users', userSchema);
+module.exports = User;

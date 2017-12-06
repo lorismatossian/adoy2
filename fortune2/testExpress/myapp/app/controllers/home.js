@@ -1,6 +1,7 @@
 var numeral = require('numeral');
 var bcrypt = require('bcrypt-nodejs');
 var dateFormat = require('dateformat');
+const User = require('../models/home');
 
 exports.loggedIn = function(req, res, next)
 {
@@ -32,11 +33,9 @@ exports.home = function(req, res) {
 exports.signup = function(req, res) {
 
 	if (req.session.user) {
-
 		res.redirect('/home');
 
 	} else {
-
 		res.render('signup', {
 			error : req.flash("error"),
 			success: req.flash("success"),

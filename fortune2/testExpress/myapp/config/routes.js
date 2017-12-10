@@ -7,8 +7,8 @@ module.exports = function (app, passport) {
     app.get('/login', home.login);
     app.get('/signup', home.signup);
     app.get('/add', home.add);
-    
-    
+
+
 
     app.get('/', home.loggedIn, home.home);//home
     app.get('/home', home.loggedIn, home.home);//home
@@ -26,9 +26,9 @@ module.exports = function (app, passport) {
     }));
 
     app.post('/add', passport.authenticate('local-login', {
-        successRedirect: '/home', 
-        failureRedirect: '/login', 
-        failureFlash: true 
+        successRedirect: '/home',
+        failureRedirect: '/login',
+        failureFlash: true
 
 
     }));

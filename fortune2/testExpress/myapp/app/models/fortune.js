@@ -17,16 +17,6 @@ var fortuneSchema = mongoose.Schema({
 
 
 //methods ======================
-//generating a hash
-userSchema.methods.generateHash = function(password) {
- return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-//checking if password is valid
-userSchema.methods.validPassword = function(password) {
- return bcrypt.compareSync(password, this.password);
-};
-
-//create the model for users and expose it to our app
-let User = mongoose.model('ex_users', userSchema);
-module.exports = User;
+//create the model for fortune and expose it to the app
+let Fortune = mongoose.model('ex_fortunes', fortuneSchema);
+module.exports = Fortune;

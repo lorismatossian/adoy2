@@ -21,7 +21,6 @@
 
         <h2>Écris ta fortune !</h2>
         <form action="/add" method="post">
-          {% csrf_token %}
             <label for="text">Ton texte ici: </label>
             <textarea name="text" id="text"></textarea>
             <input type="submit" value="OK"/>

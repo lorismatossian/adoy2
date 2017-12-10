@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Fortune</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Fortune</h1>
+    <p>Welcome to Fortune</p>
+    <p><a href="/add">Write your fortune</a></p>
+    <p><a href="/add">Voir les 30 famous</a></p>
+    <%= fort.size %>
+    <ul>
+      <% for (var f in fort) { %>
+        <h3><%= f.content %></h3>
+        <h3><%= f.user_id %></h3>
+        <h3><%= f.score %></h3>
+        <% } %>
+    </ul>
   </body>
 </html>

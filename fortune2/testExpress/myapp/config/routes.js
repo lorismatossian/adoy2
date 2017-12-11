@@ -13,6 +13,8 @@ module.exports = function (app, passport) {
 
     app.get('/add', home.add);
     app.post('/add', home.create_fortune);
+    
+    app.get('/famous', home.famous);
 
 
 

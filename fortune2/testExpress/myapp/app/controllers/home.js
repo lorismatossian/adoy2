@@ -67,6 +67,33 @@ exports.vote = function(req, res)
 };
 
 
+exports.voteup = function(req, res)
+{
+	fort = req.fortune;
+	fort.score = fort.score + 1;
+	fort.save();
+	if (err) {
+		res.render("/error", {error: err});
+	}
+	else {
+		res.redirect("/");
+	}
+};
+
+exports.votedown = function(req, res)
+{
+	fort = req.fortune;
+	fort.score = fort.score - 1;
+	fort.save();
+	if (err) {
+		res.render("/error", {error: err});
+	}
+	else {
+		res.redirect("/");
+	}
+};
+
+
 exports.loggedIn = function(req, res, next)
 {
 	if (req.session.user) { // req.session.passport._id

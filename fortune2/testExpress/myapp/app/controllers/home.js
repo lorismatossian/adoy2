@@ -16,9 +16,9 @@ exports.famous = function(req, res) {
 	res.render("famous");
 };
 
-exports.add = function(req, res) {
-	render("add");
-}
+// exports.add = function(req, res) {
+// 	res.render("add");
+// }
 
 exports.create_fortune = function(req, res)
 {
@@ -132,13 +132,13 @@ exports.login = function(req, res) {
 
 
 
-// exports.add = function(req, res) {
+exports.add = function(req, res) {
 
-// 	res.render('add.ejs', {
-// 		error : req.flash("error"),
-// 		success: req.flash("success"),
-// 		session:req.session,
+	res.render('add.ejs', {
+		error : req.flash("error"),
+		success: req.flash("success"),
+		session:req.session,
 
-// 	 });
-// 	 next();
-// }
+	 });
+	 next();
+}

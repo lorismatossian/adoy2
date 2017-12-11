@@ -1,29 +1,15 @@
-
-//app/models/user.js
-//load the things we need
 var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
 
-//define the schema for our user model
 var fortuneSchema = mongoose.Schema({
-	_id:{ type: Number, default: 1 },
-	//title: String,
+	_id:{type: Number },
 	content: String,
-	user_id: Number,
+  user_id: Number,
 	score: Number,
-	created_date: Date,
-	updated_date: Date
+	created_at: { type: Date, default: Date.now }
 });
-
-
-//methods ======================
-fortuneSchema.methods.findAll = function() {
- return
-};
 
 /*fortuneSchema.methods.find = function(id) {
 
 };*/
 //create the model for fortune and expose it to the app
-let Fortune = mongoose.model('ex_fortunes', fortuneSchema);
-module.exports = Fortune;
+module.export = mongoose.model('Fortune', fortuneSchema);

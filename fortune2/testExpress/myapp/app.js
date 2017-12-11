@@ -29,7 +29,11 @@ var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
 //configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
+mongoose.Promise = global.Promise;
 
+mongoose.connect('mongodb://localhost:27017')
+  .then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));
 
 require('./config/passport')(passport); // pass passport for configuration
 

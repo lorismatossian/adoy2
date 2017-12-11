@@ -8,14 +8,23 @@
     <h1>Fortune</h1>
     <p>Welcome to Fortune</p>
     <p><a href="/add">Write your fortune</a></p>
-    <p><a href="/famous">Voir les 30 famous</a></p>
-    <%= fort.size %>
-    <ul>
-      <% for (var f in fort) { %>
-        <h3><%= f.content %></h3>
-        <h3><%= f.user_id %></h3>
-        <h3><%= f.score %></h3>
+    <p><a href="/">Voir les 30 famous</a></p>
+    <p><a href="/login">Se connecter</a></p>
+    <br>
+    <%= fortunes.length %>
+    <% if(fortunes.length > 0){ %>
+        <% for(var i=0; i<fortunes.length;i++) { %>
+          <tr>
+            <td><%= fortunes[i]._id%></td>
+            <td><%= fortunes[i].content%></td>
+            <td><%= fortunes[i].user_id%></td>
+            <td><%= fortunes[i].score%></td>
+          </tr>
         <% } %>
+    <% } else { %>
+      <div>No employees found.</div>
+    <% } %>
+    <ul>
     </ul>
   </body>
 </html>

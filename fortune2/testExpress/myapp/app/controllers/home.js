@@ -7,8 +7,10 @@ const User = require('../models/home');
 
 
 exports.index = function(req, res) {
-	var fort = Fortune.find();
-	res.render("index", {fort:fort});
+	var MyModel = connection.model('collection', fortune);
+	var forts = Fortune.find();
+	var size = Fortune.find().count({});
+	res.render("index", {forts:forts, size:size});
 };
 
 exports.famous = function(req, res) {
@@ -22,17 +24,22 @@ exports.famous = function(req, res) {
 
 exports.create_fortune = function(req, res)
 {
-	const fort = new Fortune();
-	//fort.title = req.title;
-	fort.content = req.body.text;
+	var fort = new Fortune({ content: 'Test', score: 0});
+	fort.save(function (err) {
+  if (err) return handleError(err);
+});
+	//const fort = new Fortune();
+	//fort.title = req.body.title;
+	//fort.content = req.body.text;
+	//fort.content = "Test";
 	/*if (req.user.id != null) {
 		fort.user_id = req.user.id;
 	}
 	else {
 		fort.user_id = null;
 	}*/
-	fort.score = 0;
-	fort.save();
+  //fort.score = 0;
+	//fort.save();
 	/*if (err) {
 		res.render("/error", {error: err});
 	}
@@ -43,7 +50,7 @@ exports.create_fortune = function(req, res)
 };
 
 exports.delete_fortune = function(req, res) {
-	fort = req.fortune;
+	//fort = req.fortune;
 	fort.remove();
 	if (err) {
 		res.render("/error", {error: err});
@@ -53,10 +60,18 @@ exports.delete_fortune = function(req, res) {
 	}
 };
 
+exports.delete = function(req, res) {
+	Fortune.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.render('/');
+  });
+};
+
 exports.vote = function(req, res)
 {
+	//fort = Fortune.finfByIdAndUpdate()
 	fort = req.fortune;
-	fort.score = fort.score + req.body;
+	fort.score = fort.score + req.body.val;
 	fort.save();
 	if (err) {
 		res.render("/error", {error: err});

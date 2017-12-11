@@ -1,22 +1,19 @@
 var home = require('../app/controllers/home');
 var fortune = require('../app/models/fortune');
+var FortuneController = require('../app/controllers/FortuneController');
 
 //you can include all your controllers
 
 module.exports = function (app, passport) {
 
 
-    app.get('/', home.index);
+    app.get('/', FortuneController.index);
 
     app.get('/login', home.login);
     app.get('/signup', home.signup);
 
-    app.get('/add', home.add);
-    app.post('/add', home.create_fortune);
-    app.post('/add', home.voteup);
-    app.post('/add', home.votedown);
-    
-    app.get('/famous', home.famous);
+    app.get('/add', FortuneController.add);
+    app.post('/create', FortuneController.create);
 
 
 

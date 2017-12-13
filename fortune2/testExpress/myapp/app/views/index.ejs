@@ -8,18 +8,28 @@
     <h1>Fortune</h1>
     <p>Welcome to Fortune</p>
     <p><a href="/add">Write your fortune</a></p>
-    <p><a href="/">Voir les 30 famous</a></p>
+    <p><a href="/famous">Voir les 30 famous</a></p>
     <p><a href="/login">Se connecter</a></p>
     <br>
     <%= fortunes.length %>
     <% if(fortunes.length > 0){ %>
         <% for(var i=0; i<fortunes.length;i++) { %>
-          <tr>
-            <td><%= fortunes[i]._id%></td>
+          <ul>
+            <td>Fortune id: <%= fortunes[i]._id%></td>
             <td><%= fortunes[i].content%></td>
             <td><%= fortunes[i].user_id%></td>
-            <td><%= fortunes[i].score%></td>
-          </tr>
+            <td><%= fortunes[i].score %></td>
+            <td>
+              <form action="/upvote/<%= fortunes[i]._id %>" method="post">
+                <input type="submit" value="+1">
+              </form>
+            </td>
+            <td>
+              <form action="/downvote/<%= fortunes[i]._id %>" method="post">
+                <input type="submit" value="-1">
+              </form>
+            </td>
+          </ul>
         <% } %>
     <% } else { %>
       <div>No employees found.</div>

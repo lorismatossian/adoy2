@@ -8,12 +8,16 @@ module.exports = function (app, passport) {
 
 
     app.get('/', FortuneController.index);
+    app.get('/famous', FortuneController.famous);
 
     app.get('/login', home.login);
     app.get('/signup', home.signup);
 
     app.get('/add', FortuneController.add);
     app.post('/create', FortuneController.create);
+
+    app.post('/downvote/:id', FortuneController.downvote);
+    app.post('/upvote/:id', FortuneController.upvote);
 
 
 

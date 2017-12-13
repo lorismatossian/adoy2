@@ -1,97 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-
-    <head>
-
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap Login Form Template</title>
-
-        <!-- CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/form-elements.css">
-        <link rel="stylesheet" href="/css/style.css">
-
-
-    </head>
-
-    <body>
-
-        <form method="get" action="/famous">
-            <button class="btn btn-outline-primary my-8 my-sm-8" type="submit">
-              {% csrf_token %}
-              Écris ta fortune !
-            </button>
-          </form>
-          {%  for f in fortunes %}
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3">
-            </div>
-        <div class="col-lg-6">
-        <div class="card card-outline-secondary my-4">
-          <div class="card-header">
-          Quote
-          </div>
-          <div class="card-body">
-            <p>{{f.content}}</p>
-            <small class="text-muted">Posted by {% if f.user_id is null %} Anonymous {% else %} <h4> {{f.author.name}}</h4>{% endif %} on {{f.date}}</small>
-            <hr>
-            <nav class="navbar navbar-light bg-faded">
-              <span class="badge badge-secondary">{{f.score}}</span>
-              <form action="{% url 'voteup' f.id %}" method="post">
-                {% csrf_token %}
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">+1</button>
-              </form>
-            <form action="{% url 'votedown' f.id  %}" method="post">
-              {% csrf_token %}
-              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">-1</button>
-            </form>
-            <!-- {% if user.is_authenticated %}
-              <form action="{% url 'fuvd' f.id %}" method="post">
-                {% csrf_token %}
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">+2</button>
-              </form>
-              <form action="{% url 'fdvd' f.id  %}" method="post">
-                {% csrf_token %}
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">-2</button>
-              </form>
-            {% endif %} -->
-          </nav>
-        
-          </div>
-        </div>
-        </div>
-        </div>
-        
-        </div>
-          {% endfor %}
-        </ul>
-        
-        
-        
-        
-        <br>
-
-
-
-
-
-
-        <!-- Javascript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="/js/scripts.js"></script>
-
-    </body>
-
+<html>
+  <head>
+    <title>Fortune</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Fortune</h1>
+    <p>Welcome to Fortune</p>
+    <p><a href="/add">Write your fortune</a></p>
+    <p><a href="/famous">Voir les 30 famous</a></p>
+    <p><a href="/login">Se connecter</a></p>
+    <br>
+    <%= fortunes.length %>
+    <% if(fortunes.length > 0){ %>
+        <% for(var i=0; i<fortunes.length;i++) { %>
+          <ul>
+            <td><%= fortunes[i]._id%></td>
+            <td><%= fortunes[i].content%></td>
+            <td><%= fortunes[i].user_id%></td>
+            <td><%= fortunes[i].score %></td>
+          </ul>
+        <% } %>
+    <% } else { %>
+      <div>No employees found.</div>
+    <% } %>
+    <ul>
+    </ul>
+  </body>
 </html>
-
-
-
-
-
- 
